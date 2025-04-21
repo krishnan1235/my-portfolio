@@ -6,12 +6,15 @@ import { LuLinkedin } from "react-icons/lu";
 
 const Homepage = () => {
   return (
+    <div
+      className="h-[70rem] w-full bg-black bg-dot-white/[0.2] bg-dot-black/[0.2] relative flex items-center justify-center ">
+        
    <div className="home" id="home">
     <div className="home-content">
       <h3>Hi,</h3>
       <h1>I'm Krishnan</h1>
       <h3>And I'm a <span >Software Developer</span></h3>
-      <p>I’m an aspiring AIML engineer and a full-stack enthusiast passionate about solving real-world problems through technology</p>
+      <p>I’m an aspiring ML engineer and a full-stack enthusiast passionate about solving real-world problems through technology</p>
       {/* <div className="socila-media">
         <a href="#"><LuLinkedin   className='aa'/></a>
         <a href="#"></a>
@@ -36,6 +39,7 @@ const Homepage = () => {
       <div className="home-img">
         <img src="/images/644617.png" alt="Krish" className='krish_img'/>
       </div>
+   </div>
    </div>
   )
 }

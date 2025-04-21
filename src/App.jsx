@@ -6,6 +6,7 @@ import Homepage from "./pages/homepage.jsx";
 import About from "./pages/about.jsx";
 import Skills from './pages/skills.jsx';
 import { DotBackgroundDemo } from './pages/DotBackgroundDemo.jsx';
+import Project from "./pages/project.jsx"
 // import { Navbar } from 'react-bootstrap';
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
     <Homepage/>
     <About/>
     <Skills/>
-  <DotBackgroundDemo/>
+    <Project/>
+  {/* <DotBackgroundDemo/> */}
      </>
   )
 }
