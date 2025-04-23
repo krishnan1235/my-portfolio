@@ -7,21 +7,23 @@ import { LuLinkedin } from "react-icons/lu";
 const Homepage = () => {
   return (
     <div
-      className="h-[70rem] w-full bg-black bg-dot-white/[0.2] bg-dot-black/[0.2] relative flex items-center justify-center ">
+      className="h-[70rem] w-full bg-black bg-dot-white/[0.5] bg-dot-black/[0.1] relative flex items-center justify-center ">
         
    <div className="home" id="home">
     <div className="home-content">
-      <h3>Hi,</h3>
+      <h3>Hello,</h3>
       <h1>I'm Krishnan</h1>
-      <h3>And I'm a <span >Software Developer</span></h3>
-      <p>I’m an aspiring ML engineer and a full-stack enthusiast passionate about solving real-world problems through technology</p>
+      <h3> A Passionate    <span > Software Developer</span></h3>
+      <p> I am an aspiring Machine Learning engineer and a full-stack enthusiast, deeply passionate about using technology to solve real-world challenges. I aim to create impactful solutions that drive innovation</p>
       {/* <div className="socila-media">
         <a href="#"><LuLinkedin   className='aa'/></a>
         <a href="#"></a>
         <a href="#"></a>
       </div> */}
       {/* <a href="#" className='btn'>Download CV</a> */}
-      <button className="animated-border-button">Download CV</button>
+      <a href="/krishnan_resume_off_c.pdf" download className="animated-border-button">
+  <span className="button-text">Download CV</span>
+</a>
 
    
    

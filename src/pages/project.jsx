@@ -26,20 +26,27 @@ const projects = [
     link: "https://github.com/krishnan1235/stock-price-prediction",
     img:"images/Screenshot 2025-04-16 114735.png"
   },
+  {
+    title: "Online Voting System",
+  description: "A secure and user-friendly online voting system designed to streamline the election process. It ensures voter authentication, real-time vote counting, and transparent results.",
+  link: "https://github.com/krishnan1235/voting_system",
+    img:"images/Voting-image-6-scaled.jpg"
+  }
 ];
 
 const Project = () => {
   return (
-    <section className="portfolio py-12 px-4" id="portfolio">
+    
+    <section className="project py-12 px-4" id="project">
       <h2 className="heading text-center text-3xl font-bold mb-8">
-        Latest <span className="text-violet-500">Projects</span>
+        Latest <span> Projects</span>
       </h2>
 
-      <div className="portfolio-container">
+      <div className="project-container">
       {/* div grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-10"> */}
         {projects.map((project, index) => (
           <PinContainer key={index} title={project.link} href={project.link}>
-            <div className="portfolio-box">
+            <div className="project-box">
               <div className="flex flex-col p-6 gap-4 tracking-tight text-slate-100/50 w-[26rem] h-[26rem] bg-black/20 rounded-xl">
                 <h3 className="text-xl font-bold text-slate-100">
                   {project.title}
@@ -47,7 +54,7 @@ const Project = () => {
                 <p className="text-lg font-medium text-slate-400">
                   {project.description}
                 </p>
-                
+                <a href={project.link} target="_blank" rel="noopener noreferrer"></a>
                 {/* <div className="flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500" /> */}
                 <img src={project.img} alt="" className="pimg" />
               </div>
