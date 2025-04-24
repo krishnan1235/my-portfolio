@@ -28,6 +28,9 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+#about {
+  scroll-margin-top: 100px; /* Match your navbar height */
+}
 /* Logo styling + glow effect */
 .logo {
   /* font-size: 2.5rem; */
@@ -45,7 +48,7 @@
   transition: transform 0.3s ease;
 }
 
-.logo:hover {
+.logo:hover, logo.tapped-style {
   transform: scale(1.2) rotate(360deg);
 }
 
@@ -262,12 +265,15 @@
 @keyframes floating {
   0% {
     transform: translate(0, 0px);
+    
   }
   50% {
-    transform: translate(0, 15px);
+    transform: translate(0, 20px);
+    transform:rotate3d(20deg);
   }
   100% {
     transform: translate(0, -1px);
+    
 }
 }
 .home-content h3 {
