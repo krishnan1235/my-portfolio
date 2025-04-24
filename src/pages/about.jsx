@@ -32,7 +32,7 @@ const About = () => {
 //   </div>
 // </div>
 
-    <div className="about" id="about">
+<div className="about flex flex-col md:flex-row justify-center items-center gap-10 min-h-screen px-6 md:px-20 pt-10 bg-[var(--second-bg-color)]">
     <div className="about-img">
     <img src="images/644617.png" alt=""></img>
     </div>

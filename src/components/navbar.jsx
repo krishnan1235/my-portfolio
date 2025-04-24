@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <header className="header">
       <a href="#" className="logo">
-        <img src="public/images/student-avatar-illustration-user-profile-icon-youth-simple-cartoon-portrait-vector-276205499.png" alt="Logo" />
+      <img src="/images/student-avatar-illustration-user-profile-icon-youth-simple-cartoon-portrait-vector-276205499.png" alt="Logo" />
       </a>
 
       {/* Toggle between hamburger and close icons */}

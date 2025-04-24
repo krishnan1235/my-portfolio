@@ -9,7 +9,7 @@ const Homepage = () => {
     <div
       className="h-[70rem] w-full bg-black bg-dot-white/[0.5] bg-dot-black/[0.1] relative flex items-center justify-center ">
         
-   <div className="home" id="home">
+        <div className="home flex flex-col md:flex-row items-center justify-center min-h-screen px-6 md:px-40 pt-10 gap-8 text-white" id="home">
     <div className="home-content">
       <h3>Hello,</h3>
       <h1>I'm Krishnan</h1>
