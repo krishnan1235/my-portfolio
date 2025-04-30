@@ -574,6 +574,38 @@ hr{
  
 }
 
+.project-section {
+  width: 100%;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow: hidden;
+  background: 
+    radial-gradient(#fff 1px, transparent 1px), /* White dots */
+    radial-gradient(#ffcad4 1px, transparent 1px); /* Pink dots */
+  background-color: #000; /* Black background color */
+  background-position: 0 0, 25px 25px;
+  background-size: 50px 50px;
+  position: relative;
+  z-index: 1;
+  animation: moveDots 5s infinite linear;
+}
+
+/* Animation for moving dots */
+@keyframes moveDots {
+  0% {
+    background-position: 0 0, 25px 25px;
+  }
+  50% {
+    background-position: 100px 100px, 125px 125px;
+  }
+  100% {
+    background-position: 0 0, 25px 25px;
+  }
+}
+
+
 
 .project h2 {
   margin-bottom: 3rem; /* Space between the heading and the project container */
