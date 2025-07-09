@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos'; // Import AOS library
 import 'aos/dist/aos.css'; // Import AOS CSS
 import './App.css';
@@ -10,12 +10,37 @@ import Skills from './pages/skills.jsx';
 import { DotBackgroundDemo } from './pages/DotBackgroundDemo.jsx';
 import Project from "./pages/project.jsx";
 import Contact from "./pages/contact.jsx";
+
 function App() {
-  // Initialize AOS when the app is mounted
+  const [isLoading, setIsLoading] = useState(true); // ✅ FIXED
+
+  // Initialize AOS + loader timeout
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true }); // duration for the animation effect
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    AOS.init({ duration: 1000, once: true });
+
+    return () => clearTimeout(timer);
   }, []);
 
+  // Loader screen
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-black text-white" id="loader">
+      <div className="p-4 rounded-full border-4 border-white shadow-[0_0_40px_10px_#00ff00] animate-pulse">
+        <img
+          src="/images/pxfuel.jpg"  // ✅ Ensure it's inside public/images/
+          alt="Loading..."
+          className="w-52 h-52 rounded-full object-cover"
+        />
+      </div>
+    </div>
+    );
+  }
+
+  // Actual content
   return (
     <>
       <Navbar />
@@ -23,8 +48,7 @@ function App() {
       <About />
       <Skills />
       <Project />
-      <Contact/>
-      {/* <DotBackgroundDemo /> */}
+      <Contact />
     </>
   );
 }

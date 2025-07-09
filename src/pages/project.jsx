@@ -38,6 +38,7 @@ const Project = () => {
   return (
     <section 
       className="w-full py-16 px-4 overflow-hidden "
+      id="project"
       style={{
         background: `
           radial-gradient(#fff 1px, transparent 1px), 
