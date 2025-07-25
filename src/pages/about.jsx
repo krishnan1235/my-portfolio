@@ -7,7 +7,7 @@ const About = () => {
       id="about"
     >
       <div className="about-img">
-        <img src="images/644617.png" alt="" />
+        <img src="images/ChatGPT Image Jul 25, 2025, 02_11_45 PM.png" alt="" />
       </div>
       <div className="about-content">
         <h2 className="heading">

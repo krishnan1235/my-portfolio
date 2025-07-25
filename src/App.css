@@ -162,7 +162,9 @@
 .home-img img {
   /* background-color: aqua; */
   margin-left: 50px;
-    width: 30vw;
+  width: 20vw;
+  height: 90vh;
+  border-radius: 43%;
 }
 
 .krish_img {

@@ -39,7 +39,7 @@ const Homepage = () => {
 
     </div>
       <div className="home-img">
-        <img src="/images/644617.png" alt="Krish" className='krish_img'/>
+        <img src="images/ChatGPT Image Jul 25, 2025, 02_11_45 PM.png" alt="Krish" className='krish_img'/>
       </div>
    </div>
    </div>
