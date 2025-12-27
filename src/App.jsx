@@ -7,6 +7,7 @@ import Navbar from "./components/navbar";
 import Homepage from "./pages/homepage.jsx";
 import About from "./pages/about.jsx";
 import Skills from './pages/skills.jsx';
+import Experience from './pages/experience.jsx';
 import { DotBackgroundDemo } from './pages/DotBackgroundDemo.jsx';
 import Project from "./pages/project.jsx";
 import Contact from "./pages/contact.jsx";
@@ -46,6 +47,7 @@ function App() {
       <Navbar />
       <Homepage />
       <About />
+      <Experience />
       <Skills />
       <Project />
       <Contact />

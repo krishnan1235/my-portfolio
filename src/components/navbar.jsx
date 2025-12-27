@@ -26,6 +26,7 @@ const Navbar = () => {
 <nav className={`navbar ${menuActive ? 'active' : ''}`}>
   <a href="#home" onClick={toggleMenu}>Home</a>
   <a href="#about" onClick={toggleMenu}>About</a>  {/* This must be exactly #about */}
+  <a href="#experience" onClick={toggleMenu}>Experience</a>
   <a href="#skills" onClick={toggleMenu}>Skills</a>
   <a href="#project" onClick={toggleMenu}>Projects</a>
   <a href="#contact" onClick={toggleMenu}>Contact</a>

@@ -13,14 +13,23 @@ const About = () => {
         <h2 className="heading">
           About<span> Me</span>
         </h2>
-        <h3>Software Developer</h3>
+        <h3>Software Developer & ML Engineer</h3>
         <p>
           I am a B.Tech student specializing in Artificial Intelligence and
           Machine Learning, passionate about building innovative and scalable
-          software solutions...
+          software solutions. With expertise in full-stack development and AI/ML,
+          I have worked on projects spanning from e-commerce platforms to intelligent
+          AI agents. I love solving complex problems and creating impactful solutions
+          that make a difference.
         </p>
-        <a href="#" className="btn">
-          Read More
+        <p>
+          My recent work includes developing RAG (Retrieval-Augmented Generation) systems,
+          AI-powered applications, and full-stack web solutions. I'm always eager to learn
+          new technologies and take on challenging projects that push the boundaries of
+          what's possible.
+        </p>
+        <a href="#contact" className="btn">
+          Let's Connect
         </a>
       </div>
     </div>

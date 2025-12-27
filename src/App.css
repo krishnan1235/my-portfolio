@@ -1198,3 +1198,113 @@ html {
   transform:  rotate(10800deg);
 }
 
+/* ****************************Experience Section********************************** */
+.experience-section {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  background: var(--bg-color);
+  position: relative;
+}
+
+.experience-container {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--main-color), transparent);
+  left: 1.5rem;
+  top: 0;
+  bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .timeline-line {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--main-color);
+  border-radius: 50%;
+  border: 4px solid var(--bg-color);
+  z-index: 10;
+  box-shadow: 0 0 10px var(--main-color);
+}
+
+.experience-item {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.experience-card {
+  background: var(--second-bg-color);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  border-left: 3px solid var(--main-color);
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(246, 77, 159, 0.3);
+}
+
+.experience-header h3 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.experience-description {
+  list-style: none;
+  padding: 0;
+}
+
+.experience-description li {
+  color: var(--text-color);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .experience-item {
+    flex-direction: column !important;
+  }
+  
+  .experience-card {
+    width: 100% !important;
+    margin-left: 3rem;
+  }
+  
+  .timeline-line {
+    left: 1.5rem;
+  }
+  
+  .timeline-dot {
+    left: 1.5rem;
+    transform: translateX(-50%);
+  }
+}
+
+/* Scroll margin for experience section */
+#experience {
+  scroll-margin-top: 100px;
+}
+
