@@ -10,6 +10,7 @@ import Skills from './pages/skills.jsx';
 import Experience from './pages/experience.jsx';
 import { DotBackgroundDemo } from './pages/DotBackgroundDemo.jsx';
 import Project from "./pages/project.jsx";
+import Education from "./pages/education.jsx";
 import Contact from "./pages/contact.jsx";
 
 function App() {
@@ -30,14 +31,14 @@ function App() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen bg-black text-white" id="loader">
-      <div className="p-4 rounded-full border-4 border-white shadow-[0_0_40px_10px_#00ff00] animate-pulse">
-        <img
-          src="/images/pxfuel.jpg"  // ✅ Ensure it's inside public/images/
-          alt="Loading..."
-          className="w-52 h-52 rounded-full object-cover"
-        />
+        <div className="p-4 rounded-full border-4 border-white shadow-[0_0_40px_10px_#00ff00] animate-pulse">
+          <img
+            src="/images/pxfuel.jpg"  // ✅ Ensure it's inside public/images/
+            alt="Loading..."
+            className="w-52 h-52 rounded-full object-cover"
+          />
+        </div>
       </div>
-    </div>
     );
   }
 
@@ -49,6 +50,7 @@ function App() {
       <About />
       <Experience />
       <Skills />
+      <Education />
       <Project />
       <Contact />
     </>
