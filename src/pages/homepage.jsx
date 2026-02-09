@@ -5,7 +5,7 @@ import GameCard3D from "../components/GameCard3D";
 import TacticalFrame from "../components/TacticalFrame";
 import GunIcon from "../components/GunIcon";
 import GunBackground from "../components/GunBackground";
-import CodingBoyWidget from "../components/CodingBoyWidget";
+import CodingBoyHero from "../components/CodingBoyHero";
 
 const Homepage = () => {
   return (
@@ -193,7 +193,7 @@ const Homepage = () => {
       </div>
 
       {/* 3D Coding Boy Widget - only on homepage */}
-      <CodingBoyWidget />
+      <CodingBoyHero className="absolute bottom-0 left-0 w-full md:w-[450px] h-[300px] md:h-[350px] pointer-events-none z-50" />
     </div>
   );
 };

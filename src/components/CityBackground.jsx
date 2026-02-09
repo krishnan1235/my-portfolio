@@ -34,15 +34,22 @@ const CityBackground = ({ opacity = 1 }) => {
         camera.position.set(0, 12, 25);
         camera.lookAt(0, 5, 0);
 
-        const renderer = new THREE.WebGLRenderer({
-            antialias: false,
-            alpha: false,
-            powerPreference: 'low-power',
-            stencil: false,
-            depth: true
-        });
-        renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
-        renderer.setPixelRatio(1); // Fixed pixel ratio for consistency
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: false,
+                alpha: false,
+                powerPreference: 'low-power',
+                stencil: false,
+                depth: true
+            });
+            renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+            renderer.setPixelRatio(1); // Fixed pixel ratio for consistency
+        } catch (error) {
+            console.warn("Error creating WebGL context in CityBackground:", error);
+            sceneRef.current = false;
+            return;
+        }
 
         // Clear container safely
         const container = containerRef.current;
@@ -285,6 +292,9 @@ const CityBackground = ({ opacity = 1 }) => {
 
             renderer.dispose();
             renderer.forceContextLoss();
+            renderer.context = null;
+            renderer.domElement = null;
+            renderer = null;
 
             scene.traverse((object) => {
                 if (object.geometry) object.geometry.dispose();

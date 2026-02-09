@@ -7,12 +7,18 @@ import * as THREE from 'three';
  * Use this as a main hero element, not a small widget
  */
 const CodingBoyHero = ({ className = '' }) => {
+    const [isError, setIsError] = React.useState(false);
     const containerRef = useRef(null);
+    const sceneRef = useRef(null);
 
     useEffect(() => {
         if (!containerRef.current) return;
+        if (sceneRef.current) return;
+        sceneRef.current = true;
+        setIsError(false);
 
         const scene = new THREE.Scene();
+        // scene.background = new THREE.Color(0x0a0a0f); // Make sure this is transparent or removed
 
         const camera = new THREE.PerspectiveCamera(
             50,
@@ -20,14 +26,28 @@ const CodingBoyHero = ({ className = '' }) => {
             0.1,
             1000
         );
-        camera.position.set(0, 5, 14);
+        camera.position.set(0, 6, 18);
         camera.lookAt(0, 3, 0);
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: false,
+                alpha: true,
+                powerPreference: 'high-performance',
+                precision: 'mediump'
+            });
+            renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            renderer.setClearColor(0x000000, 0);
+        } catch (e) {
+            console.warn("WebGL Context Error in CodingBoyHero:", e);
+            sceneRef.current = false;
+            setIsError(true);
+            return;
+        }
 
         // Clear container
         while (containerRef.current.firstChild) {
@@ -212,7 +232,7 @@ const CodingBoyHero = ({ className = '' }) => {
         scene.add(chairSeat);
 
         // Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
         scene.add(ambientLight);
 
         const screenLight = new THREE.PointLight(0x00ffff, 1.5, 8);
@@ -258,16 +278,34 @@ const CodingBoyHero = ({ className = '' }) => {
         window.addEventListener('resize', handleResize);
 
         return () => {
+            sceneRef.current = false;
             window.removeEventListener('resize', handleResize);
-            if (containerRef.current && containerRef.current.contains(renderer.domElement)) {
+            if (containerRef.current && renderer && renderer.domElement && containerRef.current.contains(renderer.domElement)) {
                 containerRef.current.removeChild(renderer.domElement);
             }
-            renderer.dispose();
+            if (renderer) {
+                renderer.dispose();
+                renderer.forceContextLoss();
+                renderer.domElement = null;
+                renderer = null;
+            }
         };
     }, []);
 
+    // if (isError) {
+    //     return (
+    //         <div className={`w-full h-full ${className} flex items-center justify-center bg-black/50 rounded-xl border border-cyan-500/30`}>
+    //             <div className="text-center p-4">
+    //                 <div className="text-4xl mb-2">👾</div>
+    //                 <div className="text-cyan-400 font-mono text-sm">3D AVATAR OFFLINE</div>
+    //                 <div className="text-cyan-500/50 text-xs mt-1">Please Refresh Browser</div>
+    //             </div>
+    //         </div>
+    //     );
+    // }
+
     return (
-        <div className={`w-full h-full min-h-[400px] ${className}`}>
+        <div className={`w-full h-full ${className}`}>
             <div ref={containerRef} className="w-full h-full" />
         </div>
     );
