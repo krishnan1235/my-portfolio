@@ -21,7 +21,7 @@ const About = () => {
           <GameCard3D className="relative" intensity={10}>
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-2xl -z-10" />
             <motion.img
-              src="images/ChatGPT Image Jul 25, 2025, 02_11_45 PM.png"
+              src="/images/krishnan_t.png"
               alt="Krishnan"
               className="w-[35vw] max-w-[380px] rounded-2xl border-2 border-cyan-500/30 shadow-[0_0_30px_rgba(34,211,238,0.2)]"
               whileHover={{ scale: 1.02 }}
@@ -49,7 +49,7 @@ const About = () => {
             <TerminalWindow badge="SKILLS" className="mb-4">
               <CodeTyping
                 lines={[
-                  '// Python • AI • DSA • LeetCode 300+', 
+                  '// Python • AI • DSA • LeetCode 300+',
                   'stack.push("ML"); stack.push("GenAI");',
                   'weapon.aim("Full-Stack"); weapon.fire();'
                 ]}

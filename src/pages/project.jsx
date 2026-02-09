@@ -38,10 +38,10 @@ const projects = [
 const Project = () => {
   return (
     <section
-      id="project"
-      className="project-section w-full py-16 px-4 overflow-hidden relative"
+      id="projects"
+      className="project-section relative min-h-screen py-28 px-6 md:px-20 overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 50%, #0a0a0f 100%)",
+        background: "transparent",
       }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] bg-[length:24px_24px]" />

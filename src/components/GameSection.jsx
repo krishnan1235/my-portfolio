@@ -17,9 +17,7 @@ export default function GameSection({ id, level, title, children, className = ''
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.6 }}
       style={{
-        background: bg === 'dark'
-          ? 'linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 50%, #0a0a0f 100%)'
-          : 'linear-gradient(180deg, #0f0f1a 0%, #0a0a0f 100%)',
+        background: 'transparent',
         transformStyle: 'preserve-3d',
         perspective: '1200px',
         zIndex: 1,

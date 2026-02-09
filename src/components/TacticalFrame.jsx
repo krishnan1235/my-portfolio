@@ -24,6 +24,14 @@ export default function TacticalFrame({
     transition: { duration: 0.5 },
   };
 
+  const BadgeWrapper = noAnimate ? 'span' : motion.span;
+  const badgeProps = noAnimate ? {} : {
+    initial: { scale: 0.8, opacity: 0 },
+    whileInView: { scale: 1, opacity: 1 },
+    viewport: { once: true },
+    transition: { delay: 0.2 }
+  };
+
   return (
     <Wrapper
       className={`tactical-frame relative ${className}`}
@@ -44,15 +52,12 @@ export default function TacticalFrame({
       )}
 
       {badge && (
-        <motion.span
+        <BadgeWrapper
           className="absolute -top-2 right-4 px-2 py-0.5 font-mono text-[10px] tracking-widest uppercase bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 rounded"
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          {...badgeProps}
         >
           {badge}
-        </motion.span>
+        </BadgeWrapper>
       )}
 
       <div className="relative z-10">{children}</div>

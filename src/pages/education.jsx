@@ -40,9 +40,8 @@ const Education = () => {
           {education.map((edu, index) => (
             <motion.div
               key={edu.id}
-              className={`education-item relative flex items-center ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } flex-col gap-6`}
+              className={`education-item relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } flex-col gap-6`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -51,16 +50,15 @@ const Education = () => {
             >
               <div className="timeline-dot absolute left-6 md:left-1/2 w-3 h-3 bg-cyan-500 rounded-full border-4 border-[#0a0a0f] z-10 md:-translate-x-1/2" />
               <GameCard3D
-                className={`education-card w-full md:w-[48%] p-6 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm hover:border-cyan-500/40 hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition-all ${
-                  index % 2 === 0 ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'
-                }`}
+                className={`education-card w-full md:w-[48%] p-6 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm hover:border-cyan-500/40 hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition-all ${index % 2 === 0 ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'
+                  }`}
                 intensity={0}
                 static={true}
               >
                 <div className="education-header static-content">
                   <div className="flex items-center gap-2 mb-2">
                     <GunIcon size={16} className="text-cyan-400" animated={true} />
-                    <p className="font-mono text-cyan-400/90 text-sm font-semibold">// education[{index + 1 }]</p>
+                    <p className="font-mono text-cyan-400/90 text-sm font-semibold">// education[{index + 1}]</p>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
                   <p className="text-cyan-400 font-semibold mb-1">{edu.school}</p>

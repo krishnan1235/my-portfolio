@@ -8,13 +8,13 @@ import Homepage from "./pages/homepage.jsx";
 import About from "./pages/about.jsx";
 import Skills from './pages/skills.jsx';
 import Experience from './pages/experience.jsx';
-import { DotBackgroundDemo } from './pages/DotBackgroundDemo.jsx';
 import Project from "./pages/project.jsx";
 import Education from "./pages/education.jsx";
 import Contact from "./pages/contact.jsx";
+import CityBackground from "./components/CityBackground";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true); // ✅ FIXED
+  const [isLoading, setIsLoading] = useState(true);
 
   // Initialize AOS + loader timeout
   useEffect(() => {
@@ -30,10 +30,10 @@ function App() {
   // Loader screen
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-black text-white" id="loader">
+      <div className="flex items-center justify-center h-screen bg-[var(--bg-color)] text-[var(--text-color)]" id="loader">
         <div className="p-4 rounded-full border-4 border-white shadow-[0_0_40px_10px_#00ff00] animate-pulse">
           <img
-            src="/images/pxfuel.jpg"  // ✅ Ensure it's inside public/images/
+            src="/images/pxfuel.jpg"
             alt="Loading..."
             className="w-52 h-52 rounded-full object-cover"
           />
@@ -47,12 +47,16 @@ function App() {
     <>
       <Navbar />
       <Homepage />
-      <About />
-      <Experience />
-      <Skills />
-      <Education />
-      <Project />
-      <Contact />
+      {/* CityBackground rendered ONCE for all non-homepage sections */}
+      <div className="relative">
+        <CityBackground opacity={0.4} />
+        <About />
+        <Experience />
+        <Skills />
+        <Education />
+        <Project />
+        <Contact />
+      </div>
     </>
   );
 }

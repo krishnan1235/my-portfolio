@@ -31,7 +31,7 @@ const Contact = () => {
       id="contact"
       className="contact-section w-full min-h-screen relative flex items-center justify-center py-20 px-4"
       style={{
-        background: 'linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 50%, #0a0a0f 100%)',
+        background: 'transparent',
       }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:24px_24px]" />

@@ -190,7 +190,7 @@ const CodingBoyWidget = () => {
     }, []);
 
     return (
-        <div className="fixed bottom-0 left-0 w-[450px] h-[350px] pointer-events-none z-50">
+        <div className="absolute bottom-0 left-0 w-[450px] h-[350px] pointer-events-none z-50">
             <div ref={containerRef} className="w-full h-full" />
         </div>
     );
