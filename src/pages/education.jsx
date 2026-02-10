@@ -33,8 +33,8 @@ const education = [
 
 const Education = () => {
   return (
-    <GameSection id="education" level="02" title={<>My <span>Education</span></>} bg="dark">
-      <div className="education-container relative max-w-4xl mx-auto">
+    <GameSection id="education" level="02" title={<>My <span>Education</span></>} bg="dark" className="!min-h-0 !h-full flex flex-col justify-center !pt-0 !pb-24">
+      <div className="education-container relative max-w-4xl mx-auto h-full overflow-y-auto custom-scroll px-4 py-8">
         <div className="timeline-line absolute left-6 md:left-1/2 md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-cyan-500 to-transparent top-0" />
         <div className="space-y-10">
           {education.map((edu, index) => (

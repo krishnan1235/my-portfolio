@@ -16,15 +16,15 @@ const skilldb = [
   { name: 'TensorFlow', image: '/images/pngwing.com (2).png' },
   { name: 'RAG', image: '/images/pngwing.com (2).png' },
   { name: 'Generative AI', image: '/images/pngwing.com (2).png' },
-  { name: 'MongoDB', image: 'images/png-transparent-mongodb-original-wordmark-logo-icon-thumbnail.png' },
-  { name: 'PostgreSQL', image: 'images/images.png' },
+  { name: 'MongoDB', image: '/images/png-transparent-mongodb-original-wordmark-logo-icon-thumbnail.png' },
+  { name: 'PostgreSQL', image: '/images/images.png' },
 ];
 
 const skillfront = [
   { name: 'HTML', image: '/images/HTML5_logo_and_wordmark.svg.png' },
-  { name: 'CSS', image: 'images/CSS3_logo_and_wordmark.svg' },
+  { name: 'CSS', image: '/images/CSS3_logo_and_wordmark.svg' },
   { name: 'JavaScript', image: '/images/pngegg.png' },
-  { name: 'React.js', image: 'images/imagesrea.png' },
+  { name: 'React.js', image: '/images/imagesrea.png' },
 ];
 
 function SkillCard({ program, index }) {
@@ -50,8 +50,8 @@ function SkillCard({ program, index }) {
 
 const Skills = () => {
   return (
-    <GameSection id="skills" level="05" title={<>My <span>Skills</span></>} bg="dark">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <GameSection id="skills" level="05" title={<>My <span>Skills</span></>} bg="dark" className="!min-h-0 !h-full flex flex-col justify-center !pt-0 !pb-24">
+      <div className="max-w-6xl mx-auto space-y-6 px-4 h-full overflow-y-auto custom-scroll py-8">
         <div>
           <motion.h3
             className="category-heading text-xl font-semibold text-center mb-6 flex items-center justify-center gap-3"

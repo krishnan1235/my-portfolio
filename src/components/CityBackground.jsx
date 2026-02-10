@@ -31,7 +31,7 @@ const CityBackground = ({ opacity = 1 }) => {
             1,
             200
         );
-        camera.position.set(0, 12, 25);
+        camera.position.set(0, 10, 22);
         camera.lookAt(0, 5, 0);
 
         let renderer;
@@ -63,138 +63,152 @@ const CityBackground = ({ opacity = 1 }) => {
             color: 0x0a0a15,
         });
 
-        const neonMat = new THREE.MeshBasicMaterial({
+        const neonMatCyan = new THREE.MeshBasicMaterial({
             color: 0x00ffff,
             transparent: true,
             opacity: 0.6,
         });
+        const neonMatPurple = new THREE.MeshBasicMaterial({
+            color: 0x8338ec,
+            transparent: true,
+            opacity: 0.6,
+        });
 
-        // Create buildings with instanced mesh for better performance
+        // Create buildings with density
         const buildingPositions = [];
-        for (let x = -24; x <= 24; x += 12) {
-            for (let z = -24; z <= 24; z += 12) {
-                if (Math.abs(x) < 10 && Math.abs(z) < 10) continue;
+        for (let x = -40; x <= 40; x += 8) {
+            for (let z = -40; z <= 40; z += 8) {
+                if (Math.abs(x) < 8 && Math.abs(z) < 8) continue;
+                if (Math.random() > 0.8) continue; // Random gaps
                 buildingPositions.push({ x, z });
             }
         }
 
         // Create buildings
         buildingPositions.forEach(pos => {
-            const height = 8 + Math.random() * 12;
-            const width = 3 + Math.random() * 2;
-            const depth = 3 + Math.random() * 2;
+            const height = 5 + Math.random() * 15;
+            const width = 2 + Math.random() * 3;
+            const depth = 2 + Math.random() * 3;
 
             const buildingGeo = new THREE.BoxGeometry(width, height, depth);
             const building = new THREE.Mesh(buildingGeo, buildingMat);
             building.position.set(
-                pos.x + (Math.random() - 0.5) * 3,
+                pos.x + (Math.random() - 0.5) * 2,
                 height / 2,
-                pos.z + (Math.random() - 0.5) * 3
+                pos.z + (Math.random() - 0.5) * 2
             );
             scene.add(building);
 
-            // Single neon strip per building
-            const stripGeo = new THREE.BoxGeometry(width + 0.1, 0.1, depth + 0.1);
-            const strip = new THREE.Mesh(stripGeo, neonMat);
+            // Neon strip
+            const stripGeo = new THREE.BoxGeometry(width + 0.1, 0.05, depth + 0.1);
+            const stripMat = Math.random() > 0.6 ? neonMatCyan : neonMatPurple;
+            const strip = new THREE.Mesh(stripGeo, stripMat);
             strip.position.copy(building.position);
-            strip.position.y = height * 0.7;
+            strip.position.y = height * (0.8 + Math.random() * 0.15);
             scene.add(strip);
+            
+            // Second strip for tall buildings
+            if (height > 12) {
+                const strip2 = new THREE.Mesh(stripGeo, stripMat);
+                strip2.position.copy(building.position);
+                strip2.position.y = height * 0.4;
+                scene.add(strip2);
+            }
         });
 
-        // Simplified hologram - just one ring and sphere
+        // Hologram - keep globe clearly visible near center
         const holoGroup = new THREE.Group();
+        holoGroup.position.set(0, 7, 10);
         scene.add(holoGroup);
 
-        const ringGeo = new THREE.TorusGeometry(2.5, 0.05, 8, 32);
+        const ringGeo = new THREE.TorusGeometry(4.2, 0.03, 8, 64);
         const ringMat = new THREE.MeshBasicMaterial({
             color: 0x00ffff,
             transparent: true,
-            opacity: 0.4,
+            opacity: 0.55,
+            depthWrite: false,
+            depthTest: false,
         });
         const ring = new THREE.Mesh(ringGeo, ringMat);
-        ring.rotation.x = Math.PI / 2;
-        ring.position.y = 3;
+        ring.renderOrder = 10;
+        ring.rotation.x = Math.PI / 2.5;
         holoGroup.add(ring);
 
-        const holoSphereGeo = new THREE.SphereGeometry(1.5, 12, 12);
+        const holoSphereGeo = new THREE.IcosahedronGeometry(2.4, 1);
         const holoSphereMat = new THREE.MeshBasicMaterial({
-            color: 0x00ffff,
+            color: 0x8338ec,
             wireframe: true,
             transparent: true,
-            opacity: 0.3,
+            opacity: 0.45,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+            depthTest: false,
         });
         const holoSphere = new THREE.Mesh(holoSphereGeo, holoSphereMat);
-        holoSphere.position.y = 5;
+        holoSphere.renderOrder = 11;
         holoGroup.add(holoSphere);
 
-        // Only 2 flying vehicles
+        // Vehicles
         const vehicles = [];
-        for (let i = 0; i < 2; i++) {
-            const vehicleGeo = new THREE.BoxGeometry(1, 0.25, 0.5);
+        for (let i = 0; i < 4; i++) {
+            const vehicleGeo = new THREE.ConeGeometry(0.3, 1, 4);
             const vehicleMat = new THREE.MeshBasicMaterial({
-                color: i === 0 ? 0x00ffff : 0x8338ec,
+                color: i % 2 === 0 ? 0x00ffff : 0xff00ff,
             });
             const vehicle = new THREE.Mesh(vehicleGeo, vehicleMat);
-            const angle = (i / 2) * Math.PI * 2;
-            const radius = 18 + i * 8;
+            vehicle.rotation.x = Math.PI / 2;
+            const angle = (i / 4) * Math.PI * 2;
+            const radius = 20 + i * 5;
             vehicle.position.set(
                 Math.cos(angle) * radius,
-                15 + i * 5,
+                10 + i * 4,
                 Math.sin(angle) * radius
             );
             scene.add(vehicle);
             vehicles.push({
                 mesh: vehicle,
-                speed: 0.004 + i * 0.002,
+                speed: 0.003 + i * 0.001,
                 radius: radius,
                 angle: angle,
             });
         }
 
-        // Simple ground plane
-        const groundGeo = new THREE.PlaneGeometry(100, 100);
-        const groundMat = new THREE.MeshBasicMaterial({
-            color: 0x050508,
-        });
-        const ground = new THREE.Mesh(groundGeo, groundMat);
-        ground.rotation.x = -Math.PI / 2;
-        scene.add(ground);
-
-        // Minimal grid (fewer lines)
+        // Expanded Grid
         const gridMat = new THREE.LineBasicMaterial({
-            color: 0x00ffff,
+            color: 0x4444ff,
             transparent: true,
-            opacity: 0.08,
+            opacity: 0.15,
         });
 
-        for (let i = -30; i <= 30; i += 15) {
-            const points1 = [new THREE.Vector3(i, 0.01, -30), new THREE.Vector3(i, 0.01, 30)];
-            const geo1 = new THREE.BufferGeometry().setFromPoints(points1);
-            scene.add(new THREE.Line(geo1, gridMat));
-
-            const points2 = [new THREE.Vector3(-30, 0.01, i), new THREE.Vector3(30, 0.01, i)];
-            const geo2 = new THREE.BufferGeometry().setFromPoints(points2);
-            scene.add(new THREE.Line(geo2, gridMat));
+        for (let i = -60; i <= 60; i += 10) {
+             const points1 = [new THREE.Vector3(i, 0.1, -60), new THREE.Vector3(i, 0.1, 60)];
+             const geo1 = new THREE.BufferGeometry().setFromPoints(points1);
+             scene.add(new THREE.Line(geo1, gridMat));
+             
+             const points2 = [new THREE.Vector3(-60, 0.1, i), new THREE.Vector3(60, 0.1, i)];
+             const geo2 = new THREE.BufferGeometry().setFromPoints(points2);
+             scene.add(new THREE.Line(geo2, gridMat));
         }
 
-        // Minimal particles (100 instead of 300)
-        const particleCount = 100;
+        // Particles
+        const particleCount = 150;
         const particlesGeo = new THREE.BufferGeometry();
         const particlePositions = new Float32Array(particleCount * 3);
 
         for (let i = 0; i < particleCount * 3; i += 3) {
-            particlePositions[i] = (Math.random() - 0.5) * 60;
-            particlePositions[i + 1] = Math.random() * 30;
-            particlePositions[i + 2] = (Math.random() - 0.5) * 60;
+            particlePositions[i] = (Math.random() - 0.5) * 80;
+            particlePositions[i + 1] = Math.random() * 40;
+            particlePositions[i + 2] = (Math.random() - 0.5) * 80;
         }
 
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
         const particlesMat = new THREE.PointsMaterial({
-            color: 0x22d3ee,
-            size: 0.15,
+            color: 0xffffff,
+            size: 0.12,
             transparent: true,
-            opacity: 0.5,
+            opacity: 0.4,
+            sizeAttenuation: true
         });
 
         const particles = new THREE.Points(particlesGeo, particlesMat);

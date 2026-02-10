@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Typing = ({ phrases, speed = 100, pause = 2000 }) => {
+const Typing = ({ phrases, speed = 100, pause = 4000 }) => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);

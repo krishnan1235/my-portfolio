@@ -4,20 +4,19 @@ import CodeTyping from "../components/CodeTyping";
 import GameCard3D from "../components/GameCard3D";
 import TacticalFrame from "../components/TacticalFrame";
 import GunIcon from "../components/GunIcon";
-import GunBackground from "../components/GunBackground";
 import CodingBoyHero from "../components/CodingBoyHero";
 
 const Homepage = () => {
   return (
     <div
-      className="h-auto md:min-h-[100vh] w-full relative flex items-center justify-center overflow-hidden homepage-bg"
+      className="min-h-screen w-full relative flex items-center justify-center overflow-hidden homepage-bg"
       id="home"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/30 via-[#0a0a0f] to-purple-950/30" />
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:32px_32px]" />
 
       {/* Static gun background */}
-      <GunBackground />
+      {/* <GunBackground /> */}
 
       <div
         className="absolute top-[15%] left-[10%] w-64 h-64 rounded-full bg-cyan-500/20 blur-[80px] opacity-50"
@@ -26,7 +25,7 @@ const Homepage = () => {
         className="absolute bottom-[20%] right-[10%] w-80 h-80 rounded-full bg-purple-500/15 blur-[100px] opacity-40"
       />
 
-      <div className="home flex flex-col md:flex-row items-center justify-center min-h-[90vh] px-4 md:px-12 lg:px-20 pt-24 md:pt-16 gap-16 md:gap-40 lg:gap-60 text-white relative z-10">
+      <div className="home flex flex-col md:flex-row items-center justify-center h-full px-4 md:px-12 lg:px-20 pt-0 gap-10 md:gap-20 lg:gap-40 text-white relative z-10">
 
         {/* LEFT SIDE - Cyberpunk Circle Photo */}
         <div
@@ -47,11 +46,13 @@ const Homepage = () => {
 
               {/* Main circle frame */}
               <GameCard3D className="relative" intensity={10} static={true}>
-                <div className="w-64 h-64 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] rounded-full overflow-hidden border-4 border-cyan-500/70 shadow-[0_0_50px_rgba(34,211,238,0.25),0_0_100px_rgba(34,211,238,0.1)]">
+                <div className="w-56 h-56 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-cyan-500/70 shadow-[0_0_50px_rgba(34,211,238,0.25),0_0_100px_rgba(34,211,238,0.1)]">
                   <img
                     src="/images/krishnan_t.png"
                     alt="Krishnan"
                     className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
               </GameCard3D>
@@ -77,7 +78,7 @@ const Homepage = () => {
 
           {/* Name - Static */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tight text-[var(--text-color)]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-purple-300 drop-shadow-[0_0_18px_rgba(34,211,238,0.25)]"
             style={{ fontFamily: "Orbitron, sans-serif" }}
           >
             Krishnan
@@ -89,7 +90,7 @@ const Homepage = () => {
           </p> */}
 
           {/* Enhanced Terminal - Bigger with Typing Effect */}
-          <div className="w-full max-w-2xl mb-8">
+          <div className="w-full max-w-2xl mb-4 md:mb-4">
             <div className="relative">
               {/* Terminal outer glow */}
               <div className="absolute -inset-1 bg-cyan-500/15 rounded-2xl blur-xl" />
@@ -136,7 +137,7 @@ const Homepage = () => {
                         '  name: "Krishnan",',
                         '  role: "AIML Engineer",',
                         '  skills: ["Python", "ML", "GenAI"],',
-                        '  leetcode: "300+"',
+                        '  leetcode: "350+"',
                         '};',
                         '',
                         'while (dev.isLearning) {',
@@ -167,10 +168,12 @@ const Homepage = () => {
 
           {/* Static description text */}
           <p
-            className="text-slate-500 text-base md:text-lg leading-relaxed mb-8 max-w-xl"
+            className="text-base md:text-lg leading-relaxed mb-4 md:mb-4 max-w-xl text-slate-200/90"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
-            Building AI-powered solutions and full-stack applications
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-slate-100 to-purple-300">
+              Building AI-powered solutions and full-stack applications
+            </span>
           </p>
 
           {/* Download CV Button */}
@@ -192,8 +195,21 @@ const Homepage = () => {
         </div>
       </div>
 
-      {/* 3D Coding Boy Widget - only on homepage */}
-      <CodingBoyHero className="absolute bottom-0 left-0 w-full md:w-[450px] h-[300px] md:h-[350px] pointer-events-none z-50" />
+      {/* 3D Coding Boy Widget - large screens only to keep mobile clean */}
+      <motion.div
+        className="hidden lg:block absolute bottom-[-60px] left-[-120px] w-[440px] h-[440px] pointer-events-none z-20 rounded-full overflow-hidden"
+        style={{
+          WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 76%)',
+          maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 76%)',
+        }}
+        animate={{ opacity: [0.78, 1, 0.82], scale: [0.985, 1, 0.99] }}
+        transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_45%_55%,rgba(34,211,238,0.36),transparent_60%)] blur-[18px]" />
+        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_60%_70%,rgba(168,85,247,0.24),transparent_66%)] blur-[20px]" />
+        <div className="absolute inset-0 rounded-full bg-cyan-500/10 blur-[85px]" />
+      </motion.div>
+      <CodingBoyHero className="hidden lg:block absolute bottom-[-10px] left-[-90px] lg:w-[580px] lg:h-[430px] pointer-events-none z-30 opacity-95 drop-shadow-[0_0_35px_rgba(34,211,238,0.35)]" />
     </div>
   );
 };

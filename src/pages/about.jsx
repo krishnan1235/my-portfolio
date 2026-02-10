@@ -1,91 +1,86 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import GameSection from '../components/GameSection';
-import GameCard3D from '../components/GameCard3D';
-import CodeTyping from '../components/CodeTyping';
-import TerminalWindow from '../components/TerminalWindow';
-import GunIcon from '../components/GunIcon';
+  import React from 'react';
+  import { motion } from 'framer-motion';
+  import GameSection from '../components/GameSection';
+  import GameCard3D from '../components/GameCard3D';
+  import CodeTyping from '../components/CodeTyping';
+  import TerminalWindow from '../components/TerminalWindow';
+  import GunIcon from '../components/GunIcon';
 
-const About = () => {
-  return (
-    <GameSection id="about" level="01" bg="dark" className="about-section">
-      <div className="about flex flex-col md:flex-row justify-center items-center gap-10 min-h-[80vh] px-4 md:px-12 relative">
-        <motion.div
-          className="about-img relative"
-          initial={{ opacity: 0, x: -60, rotateY: -12 }}
-          whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, type: 'spring', stiffness: 80 }}
-          style={{ perspective: 1000 }}
-        >
-          <GameCard3D className="relative" intensity={10}>
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-2xl -z-10" />
-            <motion.img
-              src="/images/krishnan_t.png"
-              alt="Krishnan"
-              className="w-[35vw] max-w-[380px] rounded-2xl border-2 border-cyan-500/30 shadow-[0_0_30px_rgba(34,211,238,0.2)]"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            />
-          </GameCard3D>
-        </motion.div>
-
-        <motion.div
-          className="about-content relative z-10 max-w-2xl"
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, type: 'spring', stiffness: 80 }}
-          style={{ transform: 'none', perspective: 'none' }}
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <GunIcon size={24} className="text-cyan-400" />
-            <h2 className="heading text-left md:text-left mb-0">
-              About <span>Me</span>
-            </h2>
-          </div>
-          <div className="static-content">
-            <p className="font-mono text-cyan-400/80 text-sm mb-4">&gt; role = &quot;AI Engineer&quot;</p>
-            <TerminalWindow badge="SKILLS" className="mb-4">
-              <CodeTyping
-                lines={[
-                  '// Python • AI • DSA • LeetCode 300+',
-                  'stack.push("ML"); stack.push("GenAI");',
-                  'weapon.aim("Full-Stack"); weapon.fire();'
-                ]}
-                speed={55}
-                pauseAfter={1800}
-              />
-            </TerminalWindow>
-            <h3 className="text-xl font-semibold text-white mt-6 mb-4">AI Engineer</h3>
-            <p className="text-slate-400 leading-relaxed mb-4">
-              I am an AI Engineer currently pursuing B.Tech in Artificial Intelligence and Machine Learning.
-              I have strong proficiency in Python, AI, Data Structures & Algorithms, and have solved 300+
-              problems on LeetCode to strengthen my problem-solving skills.
-            </p>
-            <p className="text-slate-400 leading-relaxed mb-4">
-              I specialize in Machine Learning, Generative AI, and Deep Learning, building full-stack
-              applications with AI-powered features. My expertise includes RAG systems, NLP-based
-              solutions, transformer models, and computer vision applications.
-            </p>
-            <p className="text-slate-400 leading-relaxed mb-6">
-              Hands-on experience in front-end (React.js, HTML, CSS, JavaScript) and full-stack
-              development, creating scalable applications that integrate AI to solve real-world problems.
-            </p>
-          </div>
-          <motion.a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-lg shadow-cyan-500/20 border border-cyan-500/40"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.98 }}
+  const About = () => {
+    return (
+      <GameSection id="about" level="01" compact className="flex flex-col justify-center pb-10 md:pb-2">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-8 md:gap-10 lg:gap-24 px-4 sm:px-6 md:px-10 relative w-full max-w-[1200px] mx-auto">
+          <motion.div
+            className="about-img relative w-full lg:w-[50%] flex justify-center flex-shrink-0"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, type: 'spring', stiffness: 80 }}
           >
-            <GunIcon size={20} className="text-white" animated={true} />
-            <span>Let's Connect</span>
-          </motion.a>
-        </motion.div>
-      </div>
-    </GameSection>
-  );
-};
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-2xl -z-10" />
+              <motion.img
+                src="/images/krishnan_t.png"
+                alt="Krishnan"
+                className="w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover rounded-full border-4 border-cyan-500/30 shadow-[0_0_40px_rgba(34,211,238,0.3)] aspect-square"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              />
+            </div>
+          </motion.div>
 
-export default About;
+          <motion.div
+            className="about-content relative z-10 w-full lg:flex-1 max-w-5xl"
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, type: 'spring', stiffness: 80 }}
+            style={{ transform: 'none', perspective: 'none' }}
+          >
+            <div className="bg-black/70 border border-cyan-500/20 rounded-2xl p-3 md:p-4 backdrop-blur-md shadow-[0_0_40px_rgba(34,211,238,0.18)]">
+              <div className="flex items-center gap-2 mb-2">
+                <GunIcon size={20} className="text-cyan-400" />
+                <h2
+                  className="text-left mb-0 text-xl md:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-purple-300"
+                  style={{ fontFamily: 'Orbitron, sans-serif' }}
+                >
+                  About <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300">Me</span>
+                </h2>
+              </div>
+              <div className="static-content text-[10px] md:text-[12px]">
+                <p className="font-mono text-cyan-300/90 text-xs mb-2">&gt; role = "AI Engineer"</p>
+                <TerminalWindow badge="SKILLS" className="mb-3">
+                  <CodeTyping
+                    lines={[
+                      '// Python • AI • DSA',
+                      '// Full‑stack & MLOps',
+                      '// LeetCode 350+'
+                    ]}
+                    className="text-[10px] md:text-[12px]"
+                    speed={50}
+                  />
+                </TerminalWindow>
+                <p className="text-xs md:text-sm text-slate-200/60 leading-snug mb-2">
+                  I am an AI Engineer pursuing a B.Tech in Artificial Intelligence and Machine Learning, with strong expertise in Python and Data Structures & Algorithms (350+ LeetCode).
+                </p>
+                <p className="text-xs md:text-sm text-slate-200/85 leading-snug mb-3">
+                  I build complete AI-powered products — from data pipelines and machine learning models to RAG systems, LLM agents, and full-stack applications. I enjoy turning complex ideas into impactful, real-world solutions using Generative AI and Deep Learning.
+                </p>
+              </div>
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-lg shadow-cyan-500/20 border border-cyan-500/40"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <GunIcon size={20} className="text-white" animated={true} />
+                <span>Let's Connect</span>
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+      </GameSection>
+    );
+  };
+
+  export default About;

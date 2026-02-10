@@ -25,8 +25,8 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <GameSection id="experience" level="03" title={<>My <span>Experience</span></>} bg="dark">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <GameSection id="experience" level="03" title={<>My <span>Experience</span></>} bg="dark" className="flex flex-col justify-center pb-24">
+      <div className="max-w-4xl mx-auto space-y-6 px-4">
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.id}

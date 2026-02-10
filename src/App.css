@@ -480,8 +480,10 @@ logo.tapped-style {
 
 
 .about-img img {
-  width: 35vw;
-  max-width: 400px;
+  width: clamp(192px, 35vw, 400px);
+  height: clamp(192px, 35vw, 400px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border-radius: 50%;
   filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.5));
   border: 3px solid rgba(236, 72, 153, 0.3);
@@ -593,7 +595,8 @@ span {
 }
 
 .about-img img {
-  width: 35vw;
+  width: clamp(192px, 35vw, 400px);
+  height: clamp(192px, 35vw, 400px);
 }
 
 .heading {
@@ -841,12 +844,12 @@ hr {
 }
 
 /* Gun Icon Styling */
-svg[viewBox="0 0 24 24"] {
+.gun-icon {
   filter: drop-shadow(0 0 8px currentColor);
   transition: all 0.3s ease;
 }
 
-svg[viewBox="0 0 24 24"]:hover {
+.gun-icon:hover {
   filter: drop-shadow(0 0 12px currentColor);
   transform: scale(1.1);
 }

@@ -39,12 +39,14 @@ const Project = () => {
   return (
     <section
       id="projects"
-      className="project-section relative min-h-screen py-28 px-6 md:px-20 overflow-hidden"
+      className="project-section relative min-h-screen w-full flex flex-col pt-16 pb-32 px-4 sm:px-6 md:px-16 lg:px-20 overflow-x-hidden"
       style={{
         background: "transparent",
       }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] bg-[length:24px_24px]" />
+      <div className="absolute -top-24 left-10 w-72 h-72 rounded-full bg-cyan-500/15 blur-[90px]" />
+      <div className="absolute -bottom-24 right-10 w-80 h-80 rounded-full bg-purple-500/10 blur-[110px]" />
       <motion.span
         className="game-level font-mono text-cyan-500/60 text-xs tracking-[0.3em] uppercase block text-center mb-2"
         initial={{ opacity: 0, y: -10 }}
@@ -58,7 +60,7 @@ const Project = () => {
         Latest <span>Projects</span>
       </h2>
 
-      <div className="project-container relative z-10">
+      <div className="project-container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -70,7 +72,7 @@ const Project = () => {
           >
             <GameCard3D href={project.link} intensity={0} static={true}>
               <TacticalFrame badge="REPO" intensity="normal" className="h-full">
-                <div className="flex flex-col h-full min-h-[420px] p-5 md:p-6 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm hover:border-cyan-500/50 transition-all">
+                <div className="flex flex-col h-full min-h-[420px] p-5 md:p-6 rounded-2xl border border-white/10 bg-black/45 backdrop-blur-md hover:border-cyan-500/50 hover:shadow-[0_0_50px_rgba(34,211,238,0.12)] transition-all">
                   <div className="flex items-center gap-2 mb-3">
                     <GunIcon size={20} className="text-cyan-400" animated={true} />
                     <h3 className="text-lg md:text-xl font-bold text-white leading-tight line-clamp-2">
@@ -99,6 +101,8 @@ const Project = () => {
                         src={project.img}
                         alt={project.title}
                         className="project-card-img w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>

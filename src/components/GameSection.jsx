@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
  * title: section title (optional)
  * children
  */
-export default function GameSection({ id, level, title, children, className = '', bg = 'dark' }) {
+export default function GameSection({ id, level, title, children, className = '', compact = false }) {
   return (
     <motion.section
       id={id}
-      className={`game-section relative overflow-hidden pt-28 pb-20 md:pt-32 md:pb-24 px-4 min-h-screen ${className}`}
+      className={`game-section relative overflow-x-hidden ${compact ? 'pt-20 pb-12 md:pt-24 md:pb-16' : 'pt-28 pb-20 md:pt-32 md:pb-24'} px-4 min-h-screen ${className}`}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-80px' }}

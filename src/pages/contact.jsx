@@ -29,7 +29,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="contact-section w-full min-h-screen relative flex items-center justify-center py-20 px-4"
+      className="contact-section w-full min-h-screen relative flex items-center justify-center pt-8 pb-32 px-4"
       style={{
         background: 'transparent',
       }}
@@ -39,7 +39,7 @@ const Contact = () => {
       <div className="contact-container relative z-10 w-full max-w-lg">
         {/* "Let's Work Together" – glowing portal */}
         <motion.div
-          className="portal-cta mb-12 text-center"
+          className="portal-cta mb-6 text-center"
           initial={{ opacity: 0, y: 40, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
@@ -65,8 +65,8 @@ const Contact = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <TacticalFrame badge="MESSAGE" intensity="normal">
-            <div className="contact-form-wrapper rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm p-6 md:p-8">
-              <form ref={form} onSubmit={sendEmail} className="contact-form space-y-4">
+            <div className="contact-form-wrapper rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm p-4 md:p-6">
+              <form ref={form} onSubmit={sendEmail} className="contact-form space-y-3">
                 <input
                   type="text"
                   name="user_name"
@@ -103,7 +103,7 @@ const Contact = () => {
         </motion.div>
 
         <motion.div
-          className="social-links flex justify-center gap-6 mt-10"
+          className="social-links flex justify-center gap-6 mt-6"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
