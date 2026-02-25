@@ -50,8 +50,13 @@ const CityBackground = ({ opacity = 1 }) => {
         while (container.firstChild) container.removeChild(container.firstChild);
         container.appendChild(renderer.domElement);
 
+        const isMobile = containerRef.current.clientWidth < 768;
+        const isCoarsePointer = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
+
         // ===== OUTER SPHERE — Matte finish, semi-transparent =====
-        const sphereGeo = new THREE.SphereGeometry(3.5, 64, 64);
+        const sphereGeo = new THREE.SphereGeometry(3.5, isMobile ? 32 : 64, isMobile ? 32 : 64);
         const sphereMat = new THREE.MeshPhysicalMaterial({
             color: 0x22d3ee,
             roughness: 0.22,
@@ -72,7 +77,7 @@ const CityBackground = ({ opacity = 1 }) => {
         scene.add(sphere);
 
         // Atmospheric color shell to intensify the sphere color
-        const atmosGeo = new THREE.SphereGeometry(3.72, 64, 64);
+        const atmosGeo = new THREE.SphereGeometry(3.72, isMobile ? 32 : 64, isMobile ? 32 : 64);
         const atmosMat = new THREE.MeshBasicMaterial({
             color: 0x22d3ee,
             transparent: true,
@@ -86,7 +91,7 @@ const CityBackground = ({ opacity = 1 }) => {
         scene.add(atmosSphere);
 
         // Visible rotation overlay (wireframe glow)
-        const wireGeo = new THREE.SphereGeometry(3.52, 28, 22);
+        const wireGeo = new THREE.SphereGeometry(3.52, isMobile ? 18 : 28, isMobile ? 14 : 22);
         const wireMat = new THREE.MeshBasicMaterial({
             color: 0x7dd3fc,
             wireframe: true,
@@ -100,7 +105,7 @@ const CityBackground = ({ opacity = 1 }) => {
         scene.add(wireSphere);
 
         // ===== INNER SMALL SPHERE — Glowing core =====
-        const innerGeo = new THREE.SphereGeometry(1.2, 32, 32);
+        const innerGeo = new THREE.SphereGeometry(1.2, isMobile ? 18 : 32, isMobile ? 18 : 32);
         const innerMat = new THREE.MeshBasicMaterial({
             color: 0x22d3ee,
             transparent: true,
@@ -113,7 +118,7 @@ const CityBackground = ({ opacity = 1 }) => {
         scene.add(innerSphere);
 
         // Small inner sphere (extra) — bright and animated
-        const miniGeo = new THREE.SphereGeometry(0.28, 20, 20);
+        const miniGeo = new THREE.SphereGeometry(0.28, isMobile ? 12 : 20, isMobile ? 12 : 20);
         const miniMat = new THREE.MeshBasicMaterial({
             color: 0xa855f7,
             transparent: true,
@@ -128,7 +133,7 @@ const CityBackground = ({ opacity = 1 }) => {
         scene.add(miniSphere);
 
         // Inner sphere glow halo
-        const haloGeo = new THREE.SphereGeometry(1.6, 32, 32);
+        const haloGeo = new THREE.SphereGeometry(1.6, isMobile ? 18 : 32, isMobile ? 18 : 32);
         const haloMat = new THREE.MeshBasicMaterial({
             color: 0x22d3ee,
             transparent: true,
@@ -142,7 +147,7 @@ const CityBackground = ({ opacity = 1 }) => {
         scene.add(halo);
 
         // ===== EDGE HIGHLIGHT on outer sphere =====
-        const edgeGeo = new THREE.SphereGeometry(3.58, 64, 64);
+        const edgeGeo = new THREE.SphereGeometry(3.58, isMobile ? 32 : 64, isMobile ? 32 : 64);
         const edgeMat = new THREE.MeshBasicMaterial({
             color: 0x8338ec,
             transparent: true,
@@ -155,7 +160,7 @@ const CityBackground = ({ opacity = 1 }) => {
         edgeSphere.position.copy(sphere.position);
         scene.add(edgeSphere);
 
-        const edgeGeo2 = new THREE.SphereGeometry(3.62, 64, 64);
+        const edgeGeo2 = new THREE.SphereGeometry(3.62, isMobile ? 32 : 64, isMobile ? 32 : 64);
         const edgeMat2 = new THREE.MeshBasicMaterial({
             color: 0x22d3ee,
             transparent: true,
@@ -171,7 +176,7 @@ const CityBackground = ({ opacity = 1 }) => {
         // ===== ORBITAL RINGS =====
         // Ring 1 — Cyan
         const ring1 = new THREE.Mesh(
-            new THREE.TorusGeometry(4.8, 0.055, 16, 120),
+            new THREE.TorusGeometry(4.8, 0.055, 16, isMobile ? 70 : 120),
             new THREE.MeshBasicMaterial({
                 color: 0x22d3ee,
                 transparent: true,
@@ -186,7 +191,7 @@ const CityBackground = ({ opacity = 1 }) => {
 
         // Ring 2 — Purple
         const ring2 = new THREE.Mesh(
-            new THREE.TorusGeometry(5.3, 0.045, 16, 120),
+            new THREE.TorusGeometry(5.3, 0.045, 16, isMobile ? 70 : 120),
             new THREE.MeshBasicMaterial({
                 color: 0xa855f7,
                 transparent: true,
@@ -221,7 +226,6 @@ const CityBackground = ({ opacity = 1 }) => {
         }
 
         // ===== PARTICLES =====
-        const isMobile = containerRef.current.clientWidth < 768;
         const pCount = isMobile ? 40 : 80;
         const pGeo = new THREE.BufferGeometry();
         const pPos = new Float32Array(pCount * 3);
@@ -242,7 +246,7 @@ const CityBackground = ({ opacity = 1 }) => {
         scene.add(particles);
 
         // ===== STARS (brighter, denser than particles) =====
-        const starCount = isMobile ? 260 : 620;
+        const starCount = isMobile ? 240 : 620;
         const starGeo = new THREE.BufferGeometry();
         const starPos = new Float32Array(starCount * 3);
         for (let i = 0; i < starCount * 3; i += 3) {
@@ -328,7 +332,9 @@ const CityBackground = ({ opacity = 1 }) => {
             targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
             targetMouseY = -(e.clientY / window.innerHeight) * 2 + 1;
         };
-        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        if (!isMobile && !isCoarsePointer) {
+            window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        }
 
         const animate = (currentTime) => {
             animationId = requestAnimationFrame(animate);
@@ -419,29 +425,30 @@ const CityBackground = ({ opacity = 1 }) => {
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
+            if (isMobile) {
+                renderer.setPixelRatio(1);
+            } else {
+                renderer.setPixelRatio(window.devicePixelRatio);
+            }
         };
         window.addEventListener('resize', handleResize);
 
         return () => {
             sceneRef.current = false;
-            cancelAnimationFrame(animationId);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('resize', handleResize);
-            if (container.contains(renderer.domElement)) {
-                container.removeChild(renderer.domElement);
+            if (animationId) cancelAnimationFrame(animationId);
+            if (containerRef.current && renderer && renderer.domElement) {
+                containerRef.current.removeChild(renderer.domElement);
             }
-            renderer.dispose();
-            renderer.forceContextLoss();
-            renderer.context = null;
-            renderer.domElement = null;
-            renderer = null;
             scene.traverse((obj) => {
                 if (obj.geometry) obj.geometry.dispose();
                 if (obj.material) {
-                    if (Array.isArray(obj.material)) obj.material.forEach(m => m.dispose());
+                    if (Array.isArray(obj.material)) obj.material.forEach((m) => m.dispose());
                     else obj.material.dispose();
                 }
             });
+            renderer.dispose();
         };
     }, []);
 
