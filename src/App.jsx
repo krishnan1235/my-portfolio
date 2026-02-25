@@ -78,11 +78,52 @@ function App() {
 
     ensureJsonLd('person-jsonld', {
       '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Krishnan T',
-      jobTitle: 'AI/ML Engineer',
-      url: window.location.origin,
-      image: `${window.location.origin}/images/krishnan_t.png`,
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          '@id': `${window.location.origin}/#website`,
+          url: window.location.origin,
+          name: 'Krishnan T',
+          description:
+            'Krishnan T — AI/ML Engineer portfolio. Projects in Machine Learning, GenAI, RAG systems, and full-stack development.',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: `${window.location.origin}/?q={search_term_string}`,
+            'query-input': 'required name=search_term_string',
+          },
+        },
+        {
+          '@type': 'WebPage',
+          '@id': `${canonical}#webpage`,
+          url: canonical,
+          name: title,
+          isPartOf: { '@id': `${window.location.origin}/#website` },
+        },
+        {
+          '@type': 'Person',
+          '@id': `${window.location.origin}/#krishnan-t`,
+          name: 'Krishnan T',
+          alternateName: ['Krishnan', 'Krishnan T.'],
+          jobTitle: 'AI/ML Engineer',
+          url: window.location.origin,
+          image: `${window.location.origin}/images/krishnan_t.png`,
+          sameAs: [
+            'https://github.com/krishnan1235',
+            'https://www.linkedin.com/in/krishnan-t-17-02-2005-/',
+            'https://leetcode.com/u/krishnan_2005/',
+          ],
+          knowsAbout: [
+            'Artificial Intelligence',
+            'Machine Learning',
+            'Deep Learning',
+            'Generative AI',
+            'RAG',
+            'LLM Agents',
+            'Full-stack development',
+            'Python',
+          ],
+        },
+      ],
     });
   }, [activeSection]);
 
