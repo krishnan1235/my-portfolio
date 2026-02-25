@@ -98,7 +98,7 @@ const CodeTyping = ({
   }, [currentCharIndex, currentLineIndex, isPaused, lines, speed, pauseAfter]);
 
   return (
-    <div className="font-mono text-xs md:text-sm leading-relaxed w-full bg-[#1e1e1e] p-1 rounded-lg shadow-inner overflow-hidden relative">
+    <div className="font-mono text-xs md:text-sm leading-relaxed w-full bg-[#1e1e1e] p-2 md:p-3 rounded-lg shadow-inner overflow-x-auto overflow-y-hidden relative text-left">
       {/* Ghost copy for sizing - maintains fixed height based on content */}
       <div className="invisible pointer-events-none">
         {lines.map((line, index) => (
@@ -110,7 +110,7 @@ const CodeTyping = ({
       </div>
 
       {/* Actual animated content overlay */}
-      <div className="absolute inset-0 p-1">
+      <div className="absolute inset-0 p-2 md:p-3">
         {displayedLines.map((line, index) => (
           <div key={index} className="flex min-h-[1.5em] mb-0.5">
             <span className="text-[#858585] text-xs mr-4 select-none w-6 text-right">{index + 1}</span>

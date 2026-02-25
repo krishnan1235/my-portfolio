@@ -231,20 +231,35 @@ const CodingBoyHero = ({ className = '' }) => {
         chairSeat.position.set(0, 1.8, -1.5);
         scene.add(chairSeat);
 
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+        // Lighting - Enhanced for clear visibility
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.8);
         scene.add(ambientLight);
 
-        const screenLight = new THREE.PointLight(0x00ffff, 1.5, 8);
-        screenLight.position.set(0, 3.5, 2);
+        // Bright screen glow light (cyan)
+        const screenLight = new THREE.PointLight(0x00ffff, 2.5, 12);
+        screenLight.position.set(0, 3.5, 2.5);
         scene.add(screenLight);
 
-        const rimLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        rimLight.position.set(5, 8, -5);
+        // Key light - warm white from front-above for face/body visibility
+        const keyLight = new THREE.DirectionalLight(0xfff5e6, 1.5);
+        keyLight.position.set(2, 10, 8);
+        keyLight.target.position.set(0, 4, -0.5);
+        scene.add(keyLight);
+        scene.add(keyLight.target);
+
+        // Rim backlight - white from behind for silhouette edge
+        const rimLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        rimLight.position.set(0, 8, -8);
         scene.add(rimLight);
 
-        const fillLight = new THREE.DirectionalLight(0x8800ff, 0.3);
-        fillLight.position.set(-5, 5, 5);
+        // Cyan side fill from the left
+        const cyanFill = new THREE.PointLight(0x22d3ee, 1.0, 15);
+        cyanFill.position.set(-5, 6, 3);
+        scene.add(cyanFill);
+
+        // Purple accent fill from the right
+        const fillLight = new THREE.DirectionalLight(0x8800ff, 0.5);
+        fillLight.position.set(5, 5, 5);
         scene.add(fillLight);
 
         // Animation loop

@@ -145,24 +145,22 @@ function App() {
   // Actual content
   return (
     <div
-      className={`min-h-screen w-full bg-[#050505] overflow-x-hidden relative font-sans text-white ${
-        activeSection === 'home' || activeSection === 'about'
-          ? 'overflow-y-auto md:overflow-hidden md:h-screen'
-          : 'overflow-y-auto'
-      }`}
+      className={`min-h-screen w-full bg-[#050505] overflow-x-hidden relative font-sans text-white ${activeSection === 'home' || activeSection === 'about'
+        ? 'overflow-y-auto md:overflow-hidden md:h-screen'
+        : 'overflow-y-auto'
+        }`}
     >
 
-      {/* Background + overlay for non-home pages */}
+      {/* 3D Sphere Background — visible on ALL pages */}
+      <div className="absolute inset-0 z-0">
+        <CityBackground opacity={activeSection === 'home' ? 1 : 0.5} />
+      </div>
+
+      {/* Darker overlay for non-home pages — keeps them mostly black */}
       {activeSection !== 'home' && (
         <>
-          <div className="absolute inset-0 z-0 hidden sm:block">
-            <CityBackground opacity={0.8} />
-          </div>
-          {/* Simple gradient background fallback for mobile */}
-          <div className="absolute inset-0 z-0 sm:hidden bg-gradient-to-b from-[#03030a] via-[#05050f] to-[#070718]" />
-          {/* Dark overlay to make content clearer */}
-          <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_top,#0ea5e940,transparent_60%)]" />
-          <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-black/40 via-black/10 to-black/50" />
+          <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-black/45 via-black/35 to-black/50" />
+          <div className="absolute inset-0 z-0 pointer-events-none bg-black/10" />
         </>
       )}
 
@@ -195,11 +193,10 @@ function App() {
             duration: 0.55,
             ease: [0.19, 1, 0.22, 1],
           }}
-          className={`min-h-screen w-full overflow-x-hidden relative z-10 custom-scroll pb-24 ${
-            activeSection === 'home' || activeSection === 'about'
-              ? 'overflow-y-auto md:overflow-hidden md:h-screen md:pb-0'
-              : 'overflow-y-auto'
-          }`}
+          className={`min-h-screen w-full overflow-x-hidden relative z-10 custom-scroll pb-24 ${activeSection === 'home' || activeSection === 'about'
+            ? 'overflow-y-auto md:overflow-hidden md:h-screen md:pb-0'
+            : 'overflow-y-auto'
+            }`}
           style={{ transformOrigin: '50% 50%' }}
         >
           {renderSection()}
